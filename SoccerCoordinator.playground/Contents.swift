@@ -291,14 +291,17 @@ print("The amount of players for Team Raptors is \(teamRaptors.count) and the av
 
 for i in 0..<teamDragons.count {
     teamDragons[i]["team"] = "Team Dragons"
+    teamDragons[i]["practiceTime"] = "March 17, 1:00 PM"
 }
 
 for i in 0..<teamSharks.count {
     teamSharks[i]["team"] = "Team Sharks"
+    teamSharks[i]["practiceTime"] = "March 17, 3:00 PM"
 }
 
 for i in 0..<teamRaptors.count {
     teamRaptors[i]["team"] = "Team Raptors"
+    teamRaptors[i]["practiceTime"] = "March 18, 1:00 PM"
 }
 
 let allPlayers: [[String:Any]] = teamDragons + teamSharks + teamRaptors
@@ -312,11 +315,11 @@ var letters: [String] = []
 for i in 0..<allPlayers.count {
     
     if allPlayers[i]["team"] as? String == "Team Dragons"  {
-        letters.append("\(String(describing: allPlayers[i]["guardianNames"]!)), we would like to welcome \(String(describing: allPlayers[i]["firstName"]!)) \(String(describing: allPlayers[i]["lastName"]!)) to \(String(describing: allPlayers[i]["team"]!))! The first practice will be held March 17, at 1:00 PM! Please refer to the enclosed list of equipment needed, and feel free to contact us if you have any questions!")
+        letters.append("\(String(describing: allPlayers[i]["guardianNames"]!)), we would like to welcome \(String(describing: allPlayers[i]["firstName"]!)) \(String(describing: allPlayers[i]["lastName"]!)) to \(String(describing: allPlayers[i]["team"]!))! The first practice will be held \(String(describing: allPlayers[i]["practiceTime"]!))! Please refer to the enclosed list of equipment needed, and feel free to contact us if you have any questions!")
     } else if allPlayers[i]["team"] as? String == "Team Sharks" {
-        letters.append("\(String(describing: allPlayers[i]["guardianNames"]!)), we would like to welcome \(String(describing: allPlayers[i]["firstName"]!)) \(String(describing: allPlayers[i]["lastName"]!)) to \(String(describing: allPlayers[i]["team"]!))! The first practice will be held March 17, at 3:00 PM! Please refer to the enclosed list of equipment needed, and feel free to contact us if you have any questions!")
+        letters.append("\(String(describing: allPlayers[i]["guardianNames"]!)), we would like to welcome \(String(describing: allPlayers[i]["firstName"]!)) \(String(describing: allPlayers[i]["lastName"]!)) to \(String(describing: allPlayers[i]["team"]!))! The first practice will be held \(String(describing: allPlayers[i]["practiceTime"]!))! Please refer to the enclosed list of equipment needed, and feel free to contact us if you have any questions!")
     } else {
-        letters.append("\(String(describing: allPlayers[i]["guardianNames"]!)), we would like to welcome \(String(describing: allPlayers[i]["firstName"]!)) \(String(describing: allPlayers[i]["lastName"]!)) to \(String(describing: allPlayers[i]["team"]!))! The first practice will be held March 18, at 1:00 PM! Please refer to the enclosed list of equipment needed, and feel free to contact us if you have any questions!")
+        letters.append("\(String(describing: allPlayers[i]["guardianNames"]!)), we would like to welcome \(String(describing: allPlayers[i]["firstName"]!)) \(String(describing: allPlayers[i]["lastName"]!)) to \(String(describing: allPlayers[i]["team"]!))! The first practice will be held \(String(describing: allPlayers[i]["practiceTime"]!))! Please refer to the enclosed list of equipment needed, and feel free to contact us if you have any questions!")
     }
 }
 
