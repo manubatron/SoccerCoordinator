@@ -1,5 +1,4 @@
 // Julius Manubay's - Soccer Coordinator program
-
 // Dictionary of Array to hold all 18 players information.
 var players: [[String:Any]] = [
     [
@@ -146,149 +145,77 @@ for i in 0..<players.count {
 }
 
 // Now these variables are declared so we can start putting players into teams and make sure that the amount of experienced players are the same accross the board.
-
 var teamDragons: [[String:Any]] = []
 var teamSharks: [[String:Any]] = []
 var teamRaptors: [[String:Any]] = []
 
+// Using the while loop here to ensure that as each player is appeneded to each team they are removed from the experienced array.
+var i = 0
 
-for i in 0..<hasExperience.count {
-    let player = players[i]
+while i != hasExperience.count {
+    let player = hasExperience[i]
     if teamDragons.count == teamSharks.count && teamRaptors.count == teamDragons.count {
         teamDragons.append(player)
+        hasExperience.remove(at: i)
+        i = 0
     } else if teamDragons.count > teamSharks.count {
         teamSharks.append(player)
+        hasExperience.remove(at: i)
+        i = 0
     } else {
         teamRaptors.append(player)
+        hasExperience.remove(at:i)
+        i = 0
     }
 }
 
+/*
+ 
+    These print statements are making sure each player appended was experienced
+ 
+    print("These are the experienced players for Team Dragons \(teamDragons)")
+    print("These are the experienced players for Team Sharks \(teamSharks)")
+    print("These are the experienced players for Team Raptors \(teamRaptors)")
+ 
+    hasExperience.count to make sure the array is now empty
+*/
 
-// For loop to go through and determine where to assign unexperienced players I figured after we ensured the amount of experienced players are the same accross the same three teams it would be then easy to calculate the average height, and append the unexperienced players accordingly. I've nestled the logic to check the average height of each team within the for loop as I was having issues having the global variables update outside of the scope.
+// For loop to go through and determine where to assign unexperienced players.
+// print(i) -> make sure i is back at 0
 
-for i in 0..<noExperience.count {
-    let player = players[i]
-    // Created empty arrays to store the height for each team.
-    var teamDragonsHeight: [Int] = []
-    var teamSharksHeight: [Int] = []
-    var teamRaptorsHeight: [Int] = []
-    
-    // These for loops will append the height of each player into their team.
-    for i in 0..<teamDragons.count {
-        let playerHeight = teamDragons[i]["height"] as! Int
-        teamDragonsHeight.append(playerHeight)
-    }
-    
-    for i in 0..<teamSharks.count {
-        let playerHeight = teamSharks[i]["height"] as! Int
-        teamSharksHeight.append(playerHeight)
-    }
-    
-    for i in 0..<teamRaptors.count {
-        let playerHeight = teamRaptors[i]["height"] as! Int
-        teamRaptorsHeight.append(playerHeight)
-    }
-    
-    // Variables to store the total height and average height of each team.
-    var sumDragons: Int = 0
-    var avgDragonsHeight: Double = 0
-    var sumSharks: Int = 0
-    var avgSharksHeight: Double = 0
-    var sumRaptors: Int = 0
-    var avgRaptorsHeight: Double = 0
-    
-    // These for loops determine what the average height of each team is.
-    for number in teamDragonsHeight {
-        sumDragons += number
-        let teamPlayers = teamDragons.count
-        avgDragonsHeight = Double(sumDragons) / Double(teamPlayers)
-    }
-    
-    for number in teamSharksHeight{
-        sumSharks += number
-        let teamPlayers = teamSharks.count
-        avgSharksHeight = Double(sumSharks) / Double(teamPlayers)
-    }
-    
-    for number in teamRaptorsHeight{
-        sumRaptors += number
-        let teamPlayers = teamSharks.count
-        avgRaptorsHeight = Double(sumRaptors) / Double(teamPlayers)
-        
-    }
-    
-    // Since we will be dividing the total height and number of players the format needs to be in a double as it will return a double value
-    
-    // Logic determines where to place the unexperienced players and is based on the average height.
-    if avgDragonsHeight.truncatingRemainder(dividingBy: avgSharksHeight) <= 1.5 && teamDragons.count <= teamRaptors.count {
+while i != noExperience.count {
+    let player = noExperience[i]
+    if teamDragons.count == teamSharks.count && teamRaptors.count == teamDragons.count {
         teamDragons.append(player)
-    } else if  avgDragonsHeight.truncatingRemainder(dividingBy: avgSharksHeight) >= 1.5 && teamSharks.count <= teamRaptors.count {
+        noExperience.remove(at: i)
+        i = 0
+    } else if teamDragons.count > teamSharks.count {
         teamSharks.append(player)
+        noExperience.remove(at: i)
+        i = 0
     } else {
         teamRaptors.append(player)
-        
+        noExperience.remove(at:i)
+        i = 0
     }
-    
 }
 
-// I'm repeating the logic for the averages because once again the scope is preventing me from effectively printing the accurate values for the averages... the comments in this section repeat those from above, excluding the logic for placing unexperienced players.
+/*
+ 
+ These print statements are making sure each player appended was experienced and determine that each team does indeed have 6 players each
+ 
+ print("These are the players for Team Dragons \(teamDragons)")
+ print("These are the players for Team Sharks \(teamSharks)")
+ print("These are the players for Team Raptors \(teamRaptors)")
+ teamDragons.count
+ teamSharks.count
+ teamRaptors.count
+ 
+ noExperience.count to check if the noExperience array is empty
+*/
 
-var teamDragonsHeight: [Int] = []
-var teamSharksHeight: [Int] = []
-var teamRaptorsHeight: [Int] = []
 
-// These for loops will append the height of each player into their team.
-for i in 0..<teamDragons.count {
-    let playerHeight = teamDragons[i]["height"] as! Int
-    teamDragonsHeight.append(playerHeight)
-}
-
-for i in 0..<teamSharks.count {
-    let playerHeight = teamSharks[i]["height"] as! Int
-    teamSharksHeight.append(playerHeight)
-}
-
-for i in 0..<teamRaptors.count {
-    let playerHeight = teamRaptors[i]["height"] as! Int
-    teamRaptorsHeight.append(playerHeight)
-}
-
-// Variables to store the total height and average height of each team.
-var sumDragons: Int = 0
-var avgDragonsHeight: Double = 0
-var sumSharks: Int = 0
-var avgSharksHeight: Double = 0
-var sumRaptors: Int = 0
-var avgRaptorsHeight: Double = 0
-
-// These for loops determine what the average height of each team is.
-for number in teamDragonsHeight {
-    sumDragons += number
-    let teamPlayers = teamDragons.count
-    avgDragonsHeight = Double(sumDragons) / Double(teamPlayers)
-}
-
-for number in teamSharksHeight{
-    sumSharks += number
-    let teamPlayers = teamSharks.count
-    avgSharksHeight = Double(sumSharks) / Double(teamPlayers)
-}
-
-for number in teamRaptorsHeight{
-    sumRaptors += number
-    let teamPlayers = teamSharks.count
-    avgRaptorsHeight = Double(sumRaptors) / Double(teamPlayers)
-    
-}
-
-// Section that prints the total number of players and average height values for each team.
-
-print("The amount of players for Team Dragons is \(teamDragons.count) and the average height for Team Dragons is \(avgDragonsHeight)")
-print("The amount of players for Team Sharks is \(teamSharks.count) and the average height for Team Sharks is \(avgSharksHeight)")
-print("The amount of players for Team Raptors is \(teamRaptors.count) and the average height for Team Raptors is \(avgRaptorsHeight)")
-
-// So now that we have all the teams within the same average height, and experience level lets add new values to each dictionary to signify which team each player belongs to
-
+// So now that we have all the teams within the same experience and same team values lets add new values to each dictionary to signify which team each player belongs to
 for i in 0..<teamDragons.count {
     teamDragons[i]["team"] = "Team Dragons"
     teamDragons[i]["practiceTime"] = "March 17, 1:00 PM"
@@ -304,11 +231,29 @@ for i in 0..<teamRaptors.count {
     teamRaptors[i]["practiceTime"] = "March 18, 1:00 PM"
 }
 
+
+
+/*
+ 
+ These print statements are making sure each player has their team and practice time appended.
+ 
+ print("These are the players for Team Dragons \(teamDragons)")
+ print("These are the players for Team Sharks \(teamSharks)")
+ print("These are the players for Team Raptors \(teamRaptors)")
+ 
+*/
+
+// Dictionary of Arrays to hold the values of all of the players
 let allPlayers: [[String:Any]] = teamDragons + teamSharks + teamRaptors
 
-allPlayers.count
+/*
+ 
+ This is the test to see if all of the players had correctly been added to the array
+ allPlayers.count
 
-// Now that we have the teams and all of the other information relevant to the assignment, lets create the letters!
+*/
+ 
+// Now that we have the teams and all of the other information relevant to the assignment, lets create the letters! 
 
 var letters: [String] = []
 
@@ -325,5 +270,6 @@ for i in 0..<allPlayers.count {
 
 // Now that the letters are all stored in a collection, lets print them! Now we're done? :)
 for i in 0..<letters.count {
-    print(letters[i])
+    print(letters[i]) // Check to see if each letter is there... print ("\(i + 1) \(letters[i])")
+    
 }
