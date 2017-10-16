@@ -149,7 +149,7 @@ var teamDragons: [[String:Any]] = []
 var teamSharks: [[String:Any]] = []
 var teamRaptors: [[String:Any]] = []
 
-// Using the while loop here to ensure that as each player is appeneded to each team they are removed from the experienced array.
+// Using the while loop here to ensure that as each player is appended to each team they are removed from the experienced array.
 var i = 0
 
 while i != hasExperience.count {
@@ -253,7 +253,7 @@ let allPlayers: [[String:Any]] = teamDragons + teamSharks + teamRaptors
 
 */
  
-// Now that we have the teams and all of the other information relevant to the assignment, lets create the letters! 
+// Now that we have the teams and all of the other information relevant to the assignment, lets create the letters!
 
 var letters: [String] = []
 
